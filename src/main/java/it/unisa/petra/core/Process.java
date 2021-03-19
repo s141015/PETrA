@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.nio.file.*;
+import java.util.stream.*;
 
 public class Process {
 
@@ -42,59 +44,65 @@ public class Process {
         this.executeCommand("adb shell pm uninstall " + appName, null);
     }
 
-    public ProcessOutput playRun(int run, String appName, int interactions, int timeBetweenInteractions,
-                                 int timeCapturing, String scriptLocationPath, String powerProfileFile, String outputLocation, String filter)
+
+    public void playRun(String appName, String powerProfileFile, String outputLocation, String filter,
+                        String commitHash, String repoPath, int run)
             throws InterruptedException, IOException, NoDeviceFoundException, ADBNotFoundException {
 
         String sdkFolderPath = System.getenv("ANDROID_HOME");
         this.checkADBExists();
 
-        String platformToolsFolder = sdkFolderPath + File.separator + "platform-tools";
-        String toolsFolder = sdkFolderPath + File.separator + "tools";
+//        String platformToolsFolder = sdkFolderPath + File.separator + "platform-tools";
+//        String toolsFolder = sdkFolderPath + File.separator + "tools";
 
-        Random random = new Random();
-        int seed = random.nextInt();
+//        Random random = new Random();
+//        int seed = random.nextInt();
 
-        if (scriptLocationPath.isEmpty()) {
-            System.out.println("Run " + run + ": seed: " + seed);
-        }
-        String runDataFolderName = outputLocation + "/run_" + run + File.separator;
-        File runDataFolder = new File(runDataFolderName);
+//        if (scriptLocationPath.isEmpty()) {
+//            System.out.println("seed: " + seed);
+//        }
+        String[] appFolder = repoPath.split("/");
+        String folderName = appFolder[appFolder.length-1];
+        String outputDirectory = outputLocation + File.separator + folderName + File.separator +
+                commitHash + File.separator + Integer.toString(run) + File.separator;
+        File commit_folder = new File(outputDirectory);
 
-        runDataFolder.mkdirs();
+        commit_folder.mkdirs();
 
-        String batteryStatsFilename = runDataFolderName + "batterystats";
-        String systraceFilename = runDataFolderName + "systrace";
-        String traceviewFilename = runDataFolderName + "tracedump";
+        String batteryStatsFilename = outputDirectory + "batterystats";
+        String systraceFilename = outputDirectory + "systrace";
+        String traceviewFilename = outputDirectory + "tracedump";
 
-        this.resetApp(appName, run);
-        this.startApp(appName);
+        //Generate trace and tracedump
+        this.runProcess(traceviewFilename, systraceFilename, batteryStatsFilename, repoPath, outputDirectory);
+//        this.resetApp(appName);
+//        this.startApp(appName);
 
-        Date time1 = new Date();
-        SysTraceRunner sysTraceRunner = this.startProfiling(appName, run, timeCapturing, systraceFilename, platformToolsFolder);
-        Thread systraceThread = new Thread(sysTraceRunner);
-        systraceThread.start();
+//        Date time1 = new Date();
+//        SysTraceRunner sysTraceRunner = this.startProfiling(appName, timeCapturing, systraceFilename, platformToolsFolder);
+//        Thread systraceThread = new Thread(sysTraceRunner);
+//        systraceThread.start();
 
-        this.executeActions(appName, run, scriptLocationPath, toolsFolder, interactions, timeBetweenInteractions, seed);
+//        this.executeActions(appName, scriptLocationPath, toolsFolder, interactions, timeBetweenInteractions, seed);
 
-        Date time2 = new Date();
-        long timespent = time2.getTime() - time1.getTime();
+//        Date time2 = new Date();
+//        long timespent = time2.getTime() - time1.getTime();
+//
+//        timeCapturing = (int) ((timespent + 10000) / 1000);
 
-        timeCapturing = (int) ((timespent + 10000) / 1000);
+//        this.extractInfo(appName, batteryStatsFilename, outputDirectory, platformToolsFolder, traceviewFilename);
 
-        this.extractInfo(appName, run, batteryStatsFilename, runDataFolderName, platformToolsFolder, traceviewFilename);
+//        systraceThread.join();
 
-        systraceThread.join();
+        System.out.println("aggregating results.");
 
-        System.out.println("Run " + run + ": aggregating results.");
-
-        System.out.println("Run " + run + ": parsing power profile.");
+        System.out.println("parsing power profile.");
         PowerProfile powerProfile = PowerProfileParser.parseFile(powerProfileFile);
 
         List<TraceLine> traceLinesWiConsumptions = parseAndAggregateResults(traceviewFilename, batteryStatsFilename,
-                systraceFilename, powerProfile, filter, run);
+                systraceFilename, powerProfile, filter);
 
-        PrintWriter resultsWriter = new PrintWriter(runDataFolderName + "result.csv", "UTF-8");
+        PrintWriter resultsWriter = new PrintWriter(outputDirectory + "result.csv", "UTF-8");
         resultsWriter.println("signature, joule, seconds");
 
         for (TraceLine traceLine : traceLinesWiConsumptions) {
@@ -102,12 +110,12 @@ public class Process {
         }
 
         resultsWriter.flush();
-        this.stopApp(appName, run);
+        //this.stopApp(appName, run);
 
         this.executeCommand("adb shell dumpsys battery reset", null);
 
-        System.out.println("Run " + run + ": complete.");
-        return new ProcessOutput(timeCapturing, seed);
+        System.out.println("Complete.");
+//        return new ProcessOutput(,seed);
     }
 
     public void extractPowerProfile(String outputLocation) throws NoDeviceFoundException {
@@ -125,20 +133,20 @@ public class Process {
         this.executeCommand("rm -rf " + jarDirectory + "/framework-res", null);
     }
 
-    private void resetApp(String appName, int run) throws NoDeviceFoundException {
-        System.out.println("Run " + run + ": resetting app and batteristats.");
+    private void resetApp(String appName) throws NoDeviceFoundException {
+        System.out.println("Resetting app and batteristats.");
         this.executeCommand("adb shell pm clear " + appName, null);
         this.executeCommand("adb shell dumpsys batterystats --reset", null);
     }
 
-    private SysTraceRunner startProfiling(String appName, int run, int timeCapturing, String systraceFilename,
-                                          String platformToolsFolder) throws NoDeviceFoundException {
-        System.out.println("Run " + run + ": starting profiling.");
-        this.executeCommand("adb shell am profile start " + appName + " ./data/local/tmp/log.trace", null);
-
-        System.out.println("Run " + run + ": capturing system traces.");
-        return new SysTraceRunner(timeCapturing, systraceFilename, platformToolsFolder);
-    }
+//    private SysTraceRunner startProfiling(String appName, int timeCapturing, String systraceFilename,
+//                                          String platformToolsFolder) throws NoDeviceFoundException {
+//        System.out.println("Run " + run + ": starting profiling.");
+//        this.executeCommand("adb shell am profile start " + appName + " ./data/local/tmp/log.trace", null);
+//
+//        System.out.println("Run " + run + ": capturing system traces.");
+//        return new SysTraceRunner(timeCapturing, systraceFilename, platformToolsFolder);
+//    }
 
     private void executeActions(String appName, int run, String scriptLocationPath, String toolsFolder, int interactions,
                                 int timeBetweenInteractions, int seed) throws NoDeviceFoundException {
@@ -168,22 +176,22 @@ public class Process {
     }
 
     List<TraceLine> parseAndAggregateResults(String traceviewFilename, String batteryStatsFilename, String systraceFilename,
-                                             PowerProfile powerProfile, String filter, int run) throws IOException {
+                                             PowerProfile powerProfile, String filter) throws IOException {
         List<TraceLine> traceLinesWConsumption = new ArrayList<>();
 
-        System.out.println("Run " + run + ": elaborating traceview info.");
+        System.out.println("Elaborating traceview info.");
         TraceviewStructure traceviewStructure = TraceViewParser.parseFile(traceviewFilename, filter);
         List<TraceLine> traceLines = traceviewStructure.getTraceLines();
         int traceviewLength = traceviewStructure.getEndTime();
         int traceviewStart = traceviewStructure.getStartTime();
 
-        System.out.println("Run " + run + ": elaborating battery stats info.");
+        System.out.println("Elaborating battery stats info.");
         List<EnergyInfo> energyInfoArray = BatteryStatsParser.parseFile(batteryStatsFilename, traceviewStart);
 
-        System.out.println("Run " + run + ": elaborating systrace stats info.");
+        System.out.println("Elaborating systrace stats info.");
         SysTrace cpuInfo = SysTraceParser.parseFile(systraceFilename, traceviewStart, traceviewLength);
 
-        System.out.println("Run " + run + ": aggregating results.");
+        System.out.println("Aggregating results.");
         energyInfoArray = this.mergeEnergyInfo(energyInfoArray, cpuInfo, cpuInfo.getNumberOfCpu());
         for (TraceLine traceLine : traceLines) {
             traceLinesWConsumption.add(this.calculateConsumption(traceLine, energyInfoArray, powerProfile));
@@ -232,7 +240,6 @@ public class Process {
         boolean[] previouslyIdle = new boolean[numberOfCores];
 
         for (EnergyInfo energyInfo : energyInfoArray) {
-
             if (traceLine.getEntrance() >= energyInfo.getEntrance()) {
 
                 double ampere = 0;
@@ -245,33 +252,40 @@ public class Process {
                     ampere += powerProfile.getCpuConsumptionByFrequency(coreCluster, coreFrequency) / 1000;
                     if (coreFrequency != 0) {
                         if (previouslyIdle[i]) {
-                            ampere += powerProfile.getDevices().get("cpu.awake") / 1000;
+                            /*
+                            Our power profile is different. From the description on the official source, this cpu.awake
+                            field is now called cpu.idle and the old cpu.idle is now cpu.suspend in the power profile
+                            https://source.android.com/devices/tech/power/values
+                            * */
+                            ampere += powerProfile.getDevices().get("cpu.idle") / 1000; // cpu.awake
                         }
                     } else {
                         previouslyIdle[i] = true;
                     }
                 }
 
+                /*
+                States we can probably ignore because shared between all apps:
+                running: STATE_CPU_RUNNING_FLAG
+                wake_lock: STATE_WAKE_LOCK_FLAG
+                usb_data: STATE2_USB_DATA_LINK_FLAG
+                ble_scan: STATE2_BLUETOOTH_SCAN_FLAG
+
+                should we take rx or tx for wifi_radio?
+                Need to find value for wifi: new BitDescription(HistoryItem.STATE2_WIFI_ON_FLAG, "wifi", "W"), according to desc it means wifi is on
+
                 for (String deviceString : energyInfo.getDevices()) {
                     if (deviceString.contains("wifi")) {
-                        ampere += powerProfile.getDevices().get("wifi.on") / 1000;
-                    } else if (deviceString.contains("wifi.scanning")) {
-                        ampere += powerProfile.getDevices().get("wifi.scan") / 1000;
-                    } else if (deviceString.contains("wifi.running")) {
-                        ampere += powerProfile.getDevices().get("wifi.active") / 1000;
-                    } else if (deviceString.contains("phone.scanning")) {
-                        ampere += powerProfile.getDevices().get("radio.scan") / 1000;
-                    } else if (deviceString.contains("phone.running")) {
-                        ampere += powerProfile.getDevices().get("radio.active") / 1000;
-                    } else if (deviceString.contains("bluetooth")) {
-                        ampere += powerProfile.getDevices().get("bluetooth.on") / 1000;
-                    } else if (deviceString.contains("bluetooth.running")) {
-                        ampere += powerProfile.getDevices().get("bluetooth.active") / 1000;
-                    } else if (deviceString.contains("screen")) {
+                        ampere += powerProfile.getDevices().get("wifi.controller.idle") / 1000;
+                    } else if (deviceString.contains("wifi.radio")) {
+                        ampere += powerProfile.getDevices().get("wifi.controller.voltage") / 1000;
+                    }   else if (deviceString.contains("screen")) {
                         ampere += powerProfile.getDevices().get("screen.on") / 1000;
-                    } else if (deviceString.contains("gps")) {
-                        ampere += powerProfile.getDevices().get("gps.on") / 1000;
-                    }
+                    }   else if (deviceString.contains("gps")) {
+                        ampere += powerProfile.getDevices().get("gps.voltage") / 1000;
+                    } else if (deviceString.contains("camera")) {
+                        ampere += powerProfile.getDevices().get("camera.avg") / 1000;
+                    }//Old petra: wifi.scanning, phone.scanning, phone.running, bluetooth, bluetooth.running
                 }
 
                 int phoneSignalStrength = energyInfo.getPhoneSignalStrength();
@@ -281,7 +295,7 @@ public class Process {
                 } else {
                     ampere += powerProfile.getRadioInfo().get(powerProfile.getRadioInfo().size() - 1) / 1000;
                 }
-
+            */
 
                 double watt = ampere * energyInfo.getVoltage() / 1000;
                 double nanoseconds;
@@ -317,8 +331,7 @@ public class Process {
         this.executeCommand("adb shell pm clear " + appName, null);
     }
 
-    private String executeCommand(String command, File outputFile) throws NoDeviceFoundException {
-
+    public String executeCommand(String command, File outputFile) throws NoDeviceFoundException {
         StringBuilder output = new StringBuilder();
 
         try {
@@ -379,5 +392,47 @@ public class Process {
         }
 
         return appName;
+    }
+
+
+    public void runProcess(String traceviewFilename, String systraceFilename, String batteryStatsFilename,
+                           String repoPath, String outputDirectory){
+//        Start profiling
+//	      Monitor logcat output
+//	      Launch stop profile command
+//        Detect logcat stop message, stop profiling
+//	      pull trace file
+
+        String python_script = "/Users/posl/PycharmProjects/petra_python_part/profiling_process2.py";
+//        ProcessBuilder pb = new ProcessBuilder("python3",python_script,"--trace_dump",traceviewFilename);
+        try{
+            String command = "python3 " + python_script + " --output_dir " + outputDirectory + " --repo " + repoPath +
+                    " --trace_dump " + traceviewFilename + " --systrace " + systraceFilename + " --batterystats " +
+                    batteryStatsFilename;
+            System.out.println(command);
+            this.executeCommand(command,null);
+           // java.lang.Process commandProcess = pb.start();
+            // commandProcess.waitFor();
+
+        } catch (NoDeviceFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public List<String> search(String path, String searchString) throws IOException{
+        Stream<Path> paths = Files.walk(Paths.get(path));
+        try{
+            List<String> files = paths
+                    .filter(Files::isRegularFile)
+                    .filter(p -> p.toAbsolutePath().toString().toLowerCase().contains(searchString) &&
+                            p.getFileName().toString().endsWith(".apk"))
+                    .map(p -> p.toString())
+                    .collect(Collectors.toList());
+            return files;
+        }finally{
+            if(null != paths){
+                paths.close();
+            }
+        }
     }
 }

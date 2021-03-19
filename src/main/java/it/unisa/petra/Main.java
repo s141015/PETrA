@@ -1,7 +1,6 @@
 package it.unisa.petra;
 
 import it.unisa.petra.batch.Terminal;
-import it.unisa.petra.ui.MainUI;
 
 /**
  * @author dardin88
@@ -12,7 +11,8 @@ class Main {
         switch (args.length) {
             case 1:
                 if (args[0].equals("--desktop")) {
-                    MainUI.run();
+                    //MainUI.run();
+                    assert true;
                 } else {
                     System.out.println("\nName:");
                     System.out.println("\tPETrA - Power Estimation Tool for Android\n");

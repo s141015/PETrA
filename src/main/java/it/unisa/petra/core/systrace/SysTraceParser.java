@@ -33,7 +33,7 @@ public class SysTraceParser {
 
         Document doc = Jsoup.parse(file, "UTF-8", fileName);
         Elements scriptElements = doc.getElementsByClass("trace-data");
-        String sysTraceText = scriptElements.get(0).dataNodes().get(0).getWholeData();
+        String sysTraceText = scriptElements.get(1).dataNodes().get(0).getWholeData();
 
         for (String line : sysTraceText.split("\n")) {
 

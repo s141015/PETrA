@@ -35,6 +35,7 @@ public class PowerProfile {
         }
 
         for (int i = 0; i < cpuInfo.size(); i++) {
+            //changed upper limit to <= instead of <
             if (core >= lowerLimit && core < upperLimit) {
                 return i;
             } else {

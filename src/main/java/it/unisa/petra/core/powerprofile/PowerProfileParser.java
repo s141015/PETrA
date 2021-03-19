@@ -31,12 +31,12 @@ public class PowerProfileParser {
         try {
             HashMap<String, Double> devices = new HashMap<>();
             List<CpuClusterInfo> cpuInfo = new ArrayList<>();
-            List<Double> radioInfo = new ArrayList<>();
+//            List<Double> radioInfo = new ArrayList<>();
 
             Pattern cpuClustustersCore = Pattern.compile("cpu\\.clusters\\.cores");
-            Pattern cpuConsumptionPattern = Pattern.compile("cpu\\.active(\\.cluster(\\d))?");
-            Pattern cpuFrequencyPattern = Pattern.compile("cpu\\.speeds(\\.cluster(\\d))?");
-            Pattern radioPattern = Pattern.compile("radio\\.on");
+            Pattern cpuConsumptionPattern = Pattern.compile("cpu\\.core_power(\\.cluster(\\d))?");
+            Pattern cpuFrequencyPattern = Pattern.compile("cpu\\.core_speeds(\\.cluster(\\d))?");
+//            Pattern radioPattern = Pattern.compile("radio\\.on");
 
             File powerProfileFile = new File(fileName);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -91,12 +91,12 @@ public class PowerProfileParser {
                     }
                 }
 
-                Matcher radioMatcher = radioPattern.matcher(e.getAttribute("name"));
-                if (radioMatcher.find()) {
-                    for (int j = 0; j < e.getElementsByTagName("value").getLength(); j++) {
-                        radioInfo.add(Double.parseDouble(e.getElementsByTagName("value").item(j).getTextContent()));
-                    }
-                }
+//                Matcher radioMatcher = radioPattern.matcher(e.getAttribute("name"));
+//                if (radioMatcher.find()) {
+//                    for (int j = 0; j < e.getElementsByTagName("value").getLength(); j++) {
+//                        radioInfo.add(Double.parseDouble(e.getElementsByTagName("value").item(j).getTextContent()));
+//                    }
+//                }
             }
 
             for (CpuClusterInfo aCpuInfo : cpuInfo) {
@@ -106,7 +106,7 @@ public class PowerProfileParser {
 
             powerProfile.setDevices(devices);
             powerProfile.setCpuInfo(cpuInfo);
-            powerProfile.setRadioInfo(radioInfo);
+            //powerProfile.setRadioInfo(radioInfo);
         } catch (ParserConfigurationException | SAXException ex) {
             Logger.getLogger(PowerProfileParser.class.getName()).log(Level.SEVERE, null, ex);
         }
