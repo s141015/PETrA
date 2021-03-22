@@ -24,7 +24,7 @@ public class TraceViewParser {
         int actualRowTime = 0;
         System.out.println("FILTER: " + filter);
         Pattern traceViewPattern = Pattern.compile("(\\d*)\\s(\\w{3})\\s*(\\d+)[\\s|-](.*)");
-        Pattern processPattern = Pattern.compile("(\\d*)\\smain");
+        Pattern processPattern = Pattern.compile("(\\d*)\\sInstr:\\s" + filter);
 
         ArrayList<TraceLine> tracelines = new ArrayList<>();
         try (BufferedReader readAll = new BufferedReader(new FileReader(file))) {
@@ -44,22 +44,18 @@ public class TraceViewParser {
                         try{
                             traceID = Integer.parseInt(matcher2.group(1));
                         } catch (NumberFormatException e){
-                            System.out.println(matcher2.group());
+                            System.out.println("NumberFormatException: " + matcher2.group());
+                            System.out.println(readLine);
                             System.exit(0);
                         }
                         String action = matcher2.group(2);
                         actualRowTime = Integer.parseInt(matcher2.group(3));
-ß
                         if (firstRow) {
                             firstRowTime = actualRowTime;
                             firstRow = false;
                         }
 
                         String signature = matcher2.group(4);
-
-                        if (readLine.contains(filter)){
-                            System.out.println("breakpoint");
-                        }
 
                         boolean toFilter = false;
                         if (traceID == processId) {

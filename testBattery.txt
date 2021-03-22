@@ -1,0 +1,628 @@
+Battery History (0% used, 268 used of 4096KB, 6 strings using 482):
+                    0 (14) RESET:TIME: 2021-03-19-16-19-36
+                    0 (1) 100 status=charging health=good plug=usb temp=272 volt=4455 charge=3265 modemRailChargemAh=0 wifiRailChargemAh=0 +running +wake_lock +screen +plugged phone_signal_strength=great +wifi +charging +usb_data wifi_signal_strength=3 wifi_suppl=completed +ble_scan
+                    0 (2) 100 top=u0a210:"com.google.android.apps.nexuslauncher"
+                    0 (2) 100 job=1000:"com.android.providers.settings/.WriteFallbackSettingsFilesJobService"
+                    0 (2) 100 user=0:"0"
+                    0 (2) 100 userfg=0:"0"
+                    0 (2) 100 longwake=1000:"*job*/com.android.providers.settings/.WriteFallbackSettingsFilesJobService"
+                +10ms (2) 100 stats=0:"wakelock-change"
+               +109ms (2) 100 stats=0:"dump"
+             +4s743ms (2) 100 stats=0:"dump"
+
+Per-PID Stats:
+  PID 1740 wake time: +1h3m53s443ms
+  PID 2490 wake time: +104ms
+  PID 2490 wake time: +6ms
+  PID 2088 wake time: +3ms
+
+Daily stats:
+  Current start time: 2021-03-19-16-05-22
+  Next min deadline: 2021-03-20-01-00-00
+  Next max deadline: 2021-03-20-03-00-00
+    Package changes:
+      Update org.shadowice.flocke.andotp vers=35
+      Update org.shadowice.flocke.andotp vers=35
+      Update org.shadowice.flocke.andotp.test vers=0
+      Update org.shadowice.flocke.andotp.test vers=0
+      Update org.shadowice.flocke.andotp.test vers=0
+      Update org.shadowice.flocke.andotp vers=0
+  Daily from 2021-03-09-15-25-25 to 2021-03-19-16-05-22:
+    Package changes:
+      Update com.google.android.apps.photos vers=35402067
+      Update com.google.android.apps.photos vers=35402067
+      Update com.google.android.deskclock vers=64001698
+      Update com.google.android.deskclock vers=64001698
+      Update com.android.vending vers=82432610
+      Update com.android.vending vers=82432610
+      Update com.google.android.apps.docs vers=210810340
+      Update com.google.android.apps.docs vers=210810340
+      Update com.google.android.googlequicksearchbox vers=301132231
+      Update com.google.android.googlequicksearchbox vers=301132231
+      Update com.google.android.contacts vers=2563906
+      Update com.google.android.contacts vers=2563906
+      Update com.google.android.apps.maps vers=1062100040
+      Update com.google.android.apps.maps vers=1062100040
+      Update com.android.chrome vers=438908633
+      Update com.android.chrome vers=438908633
+      Update com.google.android.webview vers=438908633
+      Update com.google.android.webview vers=438908633
+      Update com.google.android.apps.photos vers=35712069
+      Update com.google.android.apps.photos vers=35712069
+      Update com.google.android.apps.helprtc vers=1060
+      Update com.google.android.apps.helprtc vers=1060
+      Update com.google.android.apps.youtube.music vers=41850240
+      Update com.google.android.apps.youtube.music vers=41850240
+      Update com.google.android.GoogleCamera vers=64129777
+      Update com.google.android.GoogleCamera vers=64129777
+      Update com.android.vending vers=82442310
+      Update com.android.vending vers=82442310
+      Update com.google.android.apps.messaging vers=74051063
+      Update com.google.android.apps.messaging vers=74051063
+  Daily from 2021-03-08-10-58-33 to 2021-03-09-15-25-25:
+    Package changes:
+      Update com.google.android.apps.youtube.music vers=41751240
+      Update com.google.android.apps.youtube.music vers=41751240
+  Daily from 2021-03-01-11-55-52 to 2021-03-08-10-58-33:
+    Package changes:
+      Update com.google.android.calendar vers=2016982468
+      Update com.google.android.calendar vers=2016982468
+      Update com.google.android.apps.recorder vers=22006713
+      Update com.google.android.apps.recorder vers=22006713
+      Update com.google.android.apps.youtube.music vers=41651240
+      Update com.google.android.apps.youtube.music vers=41651240
+      Update com.android.vending vers=82421510
+      Update com.android.vending vers=82421510
+      Update com.google.android.apps.work.clouddpc vers=1455060
+      Update com.google.android.apps.work.clouddpc vers=1455060
+      Update com.google.android.apps.photos vers=35101613
+      Update com.google.android.apps.photos vers=35101613
+      Update com.google.android.ims vers=30372660
+      Update com.google.android.ims vers=30372660
+      Update com.google.android.marvin.talkback vers=60111898
+      Update com.google.android.marvin.talkback vers=60111898
+      Update com.felicanetworks.mfm.main vers=901
+      Update com.felicanetworks.mfm.main vers=901
+      Update com.google.android.apps.messaging vers=73067063
+      Update com.google.android.apps.messaging vers=73067063
+      Update com.google.android.youtube vers=1519508928
+      Update com.google.android.youtube vers=1519508928
+  Daily from 2021-02-26-11-35-11 to 2021-03-01-11-55-52:
+    Package changes:
+      Update ch.logixisland.anuto.test vers=0
+      Update ch.logixisland.anuto vers=0
+      Update io.mrarm.irc vers=12
+      Update io.mrarm.irc vers=12
+      Update io.mrarm.irc.test vers=0
+      Update io.mrarm.irc.test vers=0
+      Update io.mrarm.irc vers=0
+      Update io.mrarm.irc.test vers=0
+      Update org.adaway vers=50300
+      Update org.adaway vers=50300
+      Update org.adaway.test vers=0
+      Update org.adaway.test vers=0
+      Update com.google.android.apps.photos vers=34805009
+      Update com.google.android.apps.photos vers=34805009
+      Update com.google.android.ims vers=30363864
+      Update com.google.android.ims vers=30363864
+      Update com.google.android.contacts vers=2556346
+      Update com.google.android.contacts vers=2556346
+      Update org.xbmc.kore vers=27
+      Update org.xbmc.kore vers=27
+      Update org.xbmc.kore.test vers=0
+      Update org.xbmc.kore.test vers=0
+      Update com.google.android.apps.maps vers=1061200040
+      Update com.google.android.apps.maps vers=1061200040
+      Update com.google.android.youtube vers=1519384000
+      Update com.google.android.youtube vers=1519384000
+      Update com.google.android.inputmethod.latin vers=48447362
+      Update com.google.android.inputmethod.latin vers=48447362
+      Update com.google.android.apps.wellbeing vers=217217
+      Update com.google.android.apps.wellbeing vers=217217
+      Update com.google.android.projection.gearhead vers=61610544
+      Update com.google.android.projection.gearhead vers=61610544
+      Update com.google.android.dialer vers=7002193
+      Update com.google.android.dialer vers=7002193
+      Update com.google.android.apps.safetyhub vers=10006892
+      Update com.google.android.apps.safetyhub vers=10006892
+      Update com.google.android.apps.messaging vers=72205000
+      Update com.google.android.apps.messaging vers=72205000
+      Update com.google.android.apps.nbu.files vers=372991
+      Update com.google.android.apps.nbu.files vers=372991
+      Update com.google.android.gm vers=62594444
+      Update com.google.android.gm vers=62594444
+  Daily from 2021-02-25-13-45-02 to 2021-02-26-11-35-11:
+    Package changes:
+      Update com.google.android.apps.docs vers=210610440
+      Update com.google.android.apps.docs vers=210610440
+  Daily from 2021-02-24-15-20-31 to 2021-02-25-13-45-02:
+    Package changes:
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.adaway vers=0
+      Update ch.logixisland.anuto vers=0
+      Update org.xbmc.kore vers=0
+      Update io.mrarm.irc vers=0
+      Update com.vrem.wifianalyzer vers=0
+      Update nl.anndroid.powerprofile vers=0
+      Update com.google.android.apps.kids.familylinkhelper vers=0
+      Update com.google.android.apps.kids.familylinkhelper vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app.tests vers=0
+      Update ch.logixisland.anuto.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update org.adaway.test vers=0
+      Update org.kiwix.kiwixmobile.test vers=0
+      Update org.xbmc.kore.test vers=0
+      Update io.mrarm.irc.test vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.kiwix.kiwixmobile.test vers=0
+      Update org.kiwix.kiwixmobile.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=0
+      Update ch.logixisland.anuto vers=24
+      Update ch.logixisland.anuto vers=24
+      Update ch.logixisland.anuto.test vers=0
+      Update ch.logixisland.anuto.test vers=0
+  Daily from 2021-02-18-12-32-40 to 2021-02-24-15-20-31:
+    Package changes:
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update com.woxthebox.draglistview.test vers=0
+      Update com.woxthebox.draglistview.test vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update com.woxthebox.draglistview.test vers=0
+      Update com.woxthebox.draglistview.test vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update com.woxthebox.draglistview.test vers=0
+      Update com.woxthebox.draglistview.test vers=0
+      Update org.andstatus.app vers=0
+      Update com.woxthebox.draglistview.test vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.adaway.libpcap.test vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app vers=0
+      Update com.android.vending vers=82403210
+      Update com.android.vending vers=82403210
+      Update org.kiwix.kiwixmobile.test vers=0
+      Update org.kiwix.kiwixmobile.test vers=0
+      Update com.android.vending vers=82413110
+      Update com.android.vending vers=82413110
+      Update com.google.android.ims vers=30363840
+      Update com.google.android.ims vers=30363840
+      Update com.google.android.apps.kids.familylinkhelper vers=989158
+      Update com.google.android.apps.kids.familylinkhelper vers=989158
+      Update com.google.android.gm vers=62578324
+      Update com.google.android.gm vers=62578324
+      Update com.google.android.webview vers=432418133
+      Update com.google.android.webview vers=432418133
+      Update com.android.chrome vers=432418133
+      Update com.android.chrome vers=432418133
+      Update com.google.ar.core vers=210260603
+      Update com.google.ar.core vers=210260603
+      Update com.google.android.apps.youtube.music vers=41550240
+      Update com.google.android.apps.youtube.music vers=41550240
+      Update com.google.android.youtube vers=1519244736
+      Update com.google.android.youtube vers=1519244736
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update ch.logixisland.anuto vers=24
+      Update ch.logixisland.anuto vers=24
+      Update ch.logixisland.anuto.test vers=0
+      Update ch.logixisland.anuto.test vers=0
+      Update io.mrarm.irc vers=12
+      Update io.mrarm.irc vers=12
+      Update io.mrarm.irc.test vers=0
+      Update io.mrarm.irc.test vers=0
+      Update org.adaway vers=50300
+      Update org.adaway vers=50300
+      Update org.adaway.test vers=0
+      Update org.adaway.test vers=0
+      Update org.xbmc.kore vers=27
+      Update org.xbmc.kore vers=27
+      Update org.xbmc.kore.test vers=0
+      Update org.xbmc.kore.test vers=0
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app vers=338
+      Update org.andstatus.app.tests vers=0
+      Update org.andstatus.app.tests vers=0
+  Daily from 2021-02-16-03-11-00 to 2021-02-18-12-32-40:
+    Discharge step durations:
+      #0: +1h31m2s950ms to 73 (screen-off, power-save-off, device-idle-on)
+      #1: +1h2m51s717ms to 74 (screen-off, power-save-off)
+      #2: +3h37m10s404ms to 75 (power-save-off)
+      #3: +3h15m32s963ms to 76 (screen-off, power-save-off, device-idle-on)
+        Discharge total time: 9d 20h 5m 50s 800ms  (from 4 steps)
+        Discharge screen off time: 8d 2h 8m 41s 0ms  (from 3 steps)
+        Discharge screen off device idle time: 9d 22h 49m 55s 600ms  (from 2 steps)
+    Charge step durations:
+      #0: +1m53s945ms to 77 (screen-on, power-save-off, device-idle-off)
+      #1: +1m52s690ms to 76 (screen-on, power-save-off, device-idle-off)
+      #2: +1m40s164ms to 75 (screen-on, power-save-off, device-idle-off)
+        Charge total time: 3h 1m 33s 300ms  (from 3 steps)
+        Charge screen on time: 3h 1m 33s 300ms  (from 3 steps)
+    Package changes:
+      Update com.google.android.gms vers=210214046
+      Update com.google.android.gms vers=210214046
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.android.chrome vers=432415233
+      Update com.android.chrome vers=432415233
+      Update com.google.android.webview vers=432415233
+      Update com.google.android.webview vers=432415233
+      Update com.google.android.apps.work.clouddpc vers=1420180
+      Update com.google.android.apps.work.clouddpc vers=1420180
+      Update com.google.android.apps.docs vers=210470240
+      Update com.google.android.apps.docs vers=210470240
+      Update com.google.android.apps.wearables.maestro.companion vers=10048311
+      Update com.google.android.apps.wearables.maestro.companion vers=10048311
+      Update com.felicanetworks.mfm.main vers=900
+      Update com.felicanetworks.mfm.main vers=900
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.google.android.apps.maps vers=1060100040
+      Update com.google.android.apps.maps vers=1060100040
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.google.android.apps.messaging vers=72204000
+      Update com.google.android.apps.messaging vers=72204000
+      Update com.google.android.googlequicksearchbox vers=301129689
+      Update com.google.android.googlequicksearchbox vers=301129689
+      Update com.google.android.calendar vers=2016979146
+      Update com.google.android.calendar vers=2016979146
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost vers=3000000
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.pitchedapps.frost vers=0
+      Update com.pitchedapps.frost.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer vers=55
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer.test vers=0
+      Update com.vrem.wifianalyzer vers=0
+      Update com.google.android.apps.photos vers=34542593
+      Update com.google.android.apps.photos vers=34542593
+      Update com.google.android.apps.youtube.music vers=41450240
+      Update com.google.android.apps.youtube.music vers=41450240
+  Daily from 2021-02-15-05-24-50 to 2021-02-16-03-11-00:
+    Discharge step durations:
+      #0: +4h29m59s839ms to 78 (screen-off, power-save-off, device-idle-on)
+      #1: +1h53m55s933ms to 79 (screen-off, power-save-off, device-idle-on)
+      #2: +4h14m49s863ms to 80 (screen-off, power-save-off, device-idle-on)
+      #3: +3h38m6s953ms to 81 (screen-off, power-save-off, device-idle-on)
+      #4: +1h51m54s26ms to 82 (screen-off, power-save-off, device-idle-on)
+      #5: +3h48m11s719ms to 83 (screen-off, power-save-off, device-idle-on)
+        Discharge total time: 13d 20h 29m 32s 200ms  (from 6 steps)
+        Discharge screen off time: 13d 20h 29m 32s 200ms  (from 6 steps)
+        Discharge screen off device idle time: 13d 20h 29m 32s 200ms  (from 6 steps)
+  Daily from 2021-02-14-05-45-40 to 2021-02-15-05-24-50:
+    Discharge step durations:
+      #0: +2h57m16s895ms to 85 (screen-off, power-save-off, device-idle-on)
+      #1: +2h15m36s495ms to 86 (screen-off, power-save-off, device-idle-on)
+      #2: +3h12m15s881ms to 87 (screen-off, power-save-off, device-idle-on)
+      #3: +2h48m19s116ms to 88 (screen-off, power-save-off, device-idle-on)
+      #4: +4h11m29s91ms to 89 (screen-off, power-save-off, device-idle-on)
+      #5: +2h27m44s915ms to 90 (screen-off, power-save-off, device-idle-on)
+      #6: +3h4m29s884ms to 91 (screen-off, power-save-off, device-idle-on)
+        Discharge total time: 12d 11h 20m 3s 900ms  (from 7 steps)
+        Discharge screen off time: 12d 11h 20m 3s 900ms  (from 7 steps)
+        Discharge screen off device idle time: 12d 11h 20m 3s 900ms  (from 7 steps)
+
+Statistics since last charge:
+  System starts: 0, currently on battery: false
+  Estimated battery capacity: 3080 mAh
+  Min learned battery capacity: 3265 mAh
+  Max learned battery capacity: 3265 mAh
+  Time on battery: 0ms (0.0%) realtime, 0ms (--%) uptime
+  Time on battery screen off: 0ms (--%) realtime, 0ms (--%) uptime
+  Time on battery screen doze: 0ms (--%)
+  Total run time: 4s 894ms realtime, 4s 894ms uptime
+  Charge time remaining: 0ms 
+  Discharge: 0 mAh
+  Screen off discharge: 0 mAh
+  Screen doze discharge: 0 mAh
+  Screen on discharge: 0 mAh
+  Device light doze discharge: 0 mAh
+  Device deep doze discharge: 0 mAh
+  Start clock time: 2021-03-19-16-19-36
+  Screen on: 0ms (--%) 0x, Interactive: 0ms (--%)
+  Screen brightnesses: (no activity)
+
+  CONNECTIVITY POWER SUMMARY START
+  Logging duration for connectivity statistics: 0ms 
+  Cellular Statistics:
+     Cellular kernel active time: 0ms (--%)
+     Cellular Sleep time:  0ms (--%)
+     Cellular Idle time:   0ms (--%)
+     Cellular Rx time:     0ms (--%)
+     Cellular Tx time:     
+       less than 0dBm:  0ms (--%)
+       0dBm to 8dBm:  0ms (--%)
+       8dBm to 15dBm:  0ms (--%)
+       15dBm to 20dBm:  0ms (--%)
+       above 20dBm:  0ms (--%)
+     Cellular data received: 0B
+     Cellular data sent: 0B
+     Cellular packets received: 0
+     Cellular packets sent: 0
+     Cellular Radio Access Technology: (no activity)
+     Cellular Rx signal strength (RSRP): (no activity)
+  Wifi Statistics:
+     Wifi kernel active time: 0ms (--%)
+     WiFi Scan time:  0ms (--%)
+     WiFi Sleep time:  0ms (--%)
+     WiFi Idle time:   0ms (--%)
+     WiFi Rx time:     0ms (--%)
+     WiFi Tx time:     0ms (--%)
+     Wifi data received: 0B
+     Wifi data sent: 0B
+     Wifi packets received: 0
+     Wifi packets sent: 0
+     Wifi states: (no activity)
+     Wifi supplicant states: (no activity)
+     Wifi Rx signal strength (RSSI): (no activity)
+  GPS Statistics:
+     GPS signal quality (Top 4 Average CN0):
+      poor (less than 20 dBHz): 0ms (--%) 
+      good (greater than 20 dBHz): 0ms (--%) 
+  CONNECTIVITY POWER SUMMARY END
+
+  Bluetooth total received: 0B, sent: 0B
+  Bluetooth scan time: 0ms 
+     Bluetooth Idle time:   0ms (--%)
+     Bluetooth Rx time:     0ms (--%)
+     Bluetooth Tx time:     0ms (--%)
+
+  Device battery use since last full charge
+    Amount discharged (lower bound): 0
+    Amount discharged (upper bound): 0
+    Amount discharged while screen on: 0
+    Amount discharged while screen off: 0
+    Amount discharged while screen doze: 0
+
+  Resource Power Manager Stats
+
+  CPU freqs: 300000 576000 768000 1017600 1248000 1324800 1497600 1612800 1708800 1804800 300000 652800 806400 979200 1094400 1209600 1324800 1555200 1708800 1843200 1939200 2169600 2208000
+
+  1000:
+    Wake lock *alarm* realtime
+    Wake lock com.android.server.stats.StatsCompanionService.PullingAlarmListener realtime
+    Wake lock *telephony-radio* realtime
+    Wake lock *job*/com.android.providers.settings/.WriteFallbackSettingsFilesJobService realtime
+    Job com.android.providers.settings/.WriteFallbackSettingsFilesJobService: (not used)
+    Sensor 51: (not used)
+    Sensor 32782: (not used)
+  1001:
+    Wake lock *telephony-radio* realtime
+  1002:
+    Wake lock bluetooth_timer realtime
+  1027:
+    (nothing executed)
+  1068:
+    (nothing executed)
+  1073:
+    (nothing executed)
+  u0a77:
+    (nothing executed)
+  u0a80:
+    (nothing executed)
+  u0a87:
+    (nothing executed)
+  u0a88:
+    (nothing executed)
+  u0a114:
+    (nothing executed)
+  u0a115:
+    (nothing executed)
+  u0a122:
+    (nothing executed)
+  u0a123:
+    (nothing executed)
+  u0a128:
+    (nothing executed)
+  u0a130:
+    (nothing executed)
+  u0a131:
+    (nothing executed)
+  u0a133:
+    (nothing executed)
+  u0a134:
+    (nothing executed)
+  u0a135:
+    (nothing executed)
+  u0a140:
+    (nothing executed)
+  u0a141:
+    (nothing executed)
+  u0a147:
+    (nothing executed)
+  u0a148:
+    (nothing executed)
+  u0a153:
+    (nothing executed)
+  u0a156:
+    (nothing executed)
+  u0a158:
+    (nothing executed)
+  u0a160:
+    (nothing executed)
+  u0a161:
+    (nothing executed)
+  u0a163:
+    (nothing executed)
+  u0a164:
+    (nothing executed)
+  u0a168:
+    (nothing executed)
+  u0a170:
+    (nothing executed)
+  u0a171:
+    (nothing executed)
+  u0a173:
+    (nothing executed)
+  u0a176:
+    (nothing executed)
+  u0a180:
+    (nothing executed)
+  u0a190:
+    (nothing executed)
+  u0a192:
+    (nothing executed)
+  u0a197:
+    (nothing executed)
+  u0a199:
+    (nothing executed)
+  u0a204:
+    (nothing executed)
+  u0a206:
+    (nothing executed)
+  u0a210:
+    (nothing executed)
+  u0a211:
+    (nothing executed)
+  u0a214:
+    (nothing executed)
+  u0a215:
+    (nothing executed)
+  u0a216:
+    (nothing executed)
+  u0a219:
+    (nothing executed)
+  u0a223:
+    (nothing executed)
+  u0a224:
+    (nothing executed)
+
+Total cpu time reads: 0
+Batched cpu time reads: 0
+Batching Duration (min): 71572
+All UID cpu time reads since the later of device start or stats reset: 12
+UIDs removed since the later of device start or stats reset: 0

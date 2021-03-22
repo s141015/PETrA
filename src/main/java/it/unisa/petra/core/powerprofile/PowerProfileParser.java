@@ -56,6 +56,7 @@ public class PowerProfileParser {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element e = (Element) nodeList.item(i);
                 Matcher cpuClustersCoreMatcher = cpuClustustersCore.matcher(e.getAttribute("name"));
+                System.out.println("Breakpoint" + e.toString());
                 if (cpuClustersCoreMatcher.find()) {
                     for (int j = 0; j < e.getElementsByTagName("value").getLength(); j++) {
                         cpuInfo.add(new CpuClusterInfo());

@@ -222,9 +222,9 @@ public class Process {
                     finalEnergyInfo.setEntrance(finalEnergyInfoTime);
                     finalEnergyInfo.setCpuFrequencies(cpuFrequencies);
                     finalEnergyInfoArray.add(finalEnergyInfo);
-                } else {
+                } /*else {
                     break;
-                }
+                }*/
             }
         }
         return finalEnergyInfoArray;
