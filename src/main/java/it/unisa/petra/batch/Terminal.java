@@ -76,7 +76,7 @@ public class Terminal {
 ////                        throw new NumberOfTrialsExceededException();
 ////                    }
 
-                    String test_app = "/Users/posl/Desktop/temp-petra-test/testing_apps/andOTP";
+                    String test_app = "/Users/posl/Desktop/temp-petra-test/testing_apps/BasicSample";
                     String python_script = "/Users/posl/PycharmProjects/petra_python_part/app_setup1.py";
                     String setupCommand = "python3 " + python_script + " --repo " + test_app + " --build " + build;
                     System.out.println(setupCommand);
@@ -90,7 +90,10 @@ public class Terminal {
 
                     //Find apk for the appname --> must contain specific string and ends with .apk
                     //List<String> file = process.search(test_app,"build/outputs/apk/debug");
-                    List<String> file = process.search(test_app,"build/outputs/apk/fdroid/debug");
+                    List<String> file = process.search(test_app,"build/outputs/apk/debug");
+                    if (file.size() == 0){
+                        process.search(test_app,"build/outputs/apk/fdroid/debug");
+                    }
                     System.out.println("Found File: " + file.get(0));
                     String appName = process.extractAppName(file.get(0));
 
