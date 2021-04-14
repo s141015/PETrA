@@ -33,7 +33,7 @@ public class Process {
         this.executeCommand("adb shell dumpsys battery set usb 0", null);
 
         System.out.println("Installing app.");
-        this.executeCommand("adb install " + apkLocation, null);
+        this.executeCommand("adb install -r " + apkLocation, null);
     }
 
     public void uninstallApp(String appName) throws NoDeviceFoundException, ADBNotFoundException {
@@ -46,7 +46,7 @@ public class Process {
 
 
     public void playRun(String appName, String powerProfileFile, String outputLocation, String filter,
-                        String commitHash, String repoPath, int run)
+                        String commitHash, String repoPath, String profilingScript)
             throws InterruptedException, IOException, NoDeviceFoundException, ADBNotFoundException {
 
         String sdkFolderPath = System.getenv("ANDROID_HOME");
@@ -64,7 +64,7 @@ public class Process {
         String[] appFolder = repoPath.split("/");
         String folderName = appFolder[appFolder.length-1];
         String outputDirectory = outputLocation + File.separator + folderName + File.separator +
-                commitHash + File.separator + Integer.toString(run) + File.separator;
+                commitHash + File.separator;
         File commit_folder = new File(outputDirectory);
 
         commit_folder.mkdirs();
@@ -74,7 +74,7 @@ public class Process {
         String traceviewFilename = outputDirectory + "tracedump";
 
         //Generate trace and tracedump
-        this.runProcess(traceviewFilename, systraceFilename, batteryStatsFilename, repoPath, outputDirectory);
+        this.runProcess(traceviewFilename, systraceFilename, batteryStatsFilename, repoPath, outputDirectory, profilingScript);
 //        this.resetApp(appName);
 //        this.startApp(appName);
 
@@ -396,17 +396,16 @@ public class Process {
 
 
     public void runProcess(String traceviewFilename, String systraceFilename, String batteryStatsFilename,
-                           String repoPath, String outputDirectory){
+                           String repoPath, String outputDirectory, String profilingScript){
 //        Start profiling
 //	      Monitor logcat output
 //	      Launch stop profile command
 //        Detect logcat stop message, stop profiling
 //	      pull trace file
 
-        String python_script = "/Users/posl/PycharmProjects/petra_python_part/profiling_process2.py";
 //        ProcessBuilder pb = new ProcessBuilder("python3",python_script,"--trace_dump",traceviewFilename);
         try{
-            String command = "python3 " + python_script + " --output_dir " + outputDirectory + " --repo " + repoPath +
+            String command = "python3 " + profilingScript + " --output_dir " + outputDirectory + " --repo " + repoPath +
                     " --trace_dump " + traceviewFilename + " --systrace " + systraceFilename + " --batterystats " +
                     batteryStatsFilename;
             System.out.println(command);
@@ -419,12 +418,14 @@ public class Process {
         }
     }
 
-    public List<String> search(String path, String searchString) throws IOException{
+    //build/outputs/apk then keyword should be debug
+    public List<String> searchApk(String path, String directoryStructureString, String keyword) throws IOException{
         Stream<Path> paths = Files.walk(Paths.get(path));
         try{
             List<String> files = paths
                     .filter(Files::isRegularFile)
-                    .filter(p -> p.toAbsolutePath().toString().toLowerCase().contains(searchString) &&
+                    .filter(p -> p.toAbsolutePath().toString().toLowerCase().contains(directoryStructureString) &&
+                                    p.toAbsolutePath().toString().toLowerCase().contains(keyword) &&
                             p.getFileName().toString().endsWith(".apk"))
                     .map(p -> p.toString())
                     .collect(Collectors.toList());

@@ -3,6 +3,7 @@ package it.unisa.petra.batch;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 
 /**
@@ -99,5 +100,50 @@ class ConfigManager {
         }
 
         return prop.getProperty("scriptTime");
+    }
+
+    String getAppDirectory() throws IOException {
+        Properties prop = new Properties();
+        try (InputStream inputStream = this.getPropertiesStream()) {
+            prop.load(inputStream);
+        }
+
+        return prop.getProperty("appDirectory");
+    }
+
+    String getRefactoringCommits() throws IOException {
+        Properties prop = new Properties();
+        try (InputStream inputStream = this.getPropertiesStream()) {
+            prop.load(inputStream);
+        }
+
+        return prop.getProperty("refactoringCommits");
+    }
+
+    String getSetupScript() throws IOException {
+        Properties prop = new Properties();
+        try (InputStream inputStream = this.getPropertiesStream()) {
+            prop.load(inputStream);
+        }
+
+        return prop.getProperty("appSetupScript");
+    }
+
+    String getProfilingScript() throws IOException {
+        Properties prop = new Properties();
+        try (InputStream inputStream = this.getPropertiesStream()) {
+            prop.load(inputStream);
+        }
+
+        return prop.getProperty("appProfileScript");
+    }
+
+    String getApkDirectory() throws IOException {
+        Properties prop = new Properties();
+        try (InputStream inputStream = this.getPropertiesStream()) {
+            prop.load(inputStream);
+        }
+
+        return prop.getProperty("apkDirectory");
     }
 }

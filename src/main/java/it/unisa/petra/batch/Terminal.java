@@ -5,7 +5,6 @@ import it.unisa.petra.core.exceptions.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,26 +24,11 @@ public class Terminal {
 //            BufferedWriter seedsWriter = null;
 
             ConfigManager configManager = new ConfigManager(configFileLocation);
-
+            CommitManager commitManager = new CommitManager();
             File appDataFolder = new File(configManager.getOutputLocation());
 
             appDataFolder.delete();
             appDataFolder.mkdirs();
-
-
-
-//            if (configManager.getScriptLocationPath().isEmpty()) {
-//                File seedsFile = new File(configManager.getOutputLocation() + File.separator + "seeds");
-//                seedsWriter = new BufferedWriter(new FileWriter(seedsFile, true));
-//            }
-
-
-//            File apkFile = new File(configManager.getApkLocationPath());
-//            if (apkFile.exists()) {
-//                process.installApp(configManager.getApkLocationPath());
-//            } else {
-//                throw new ApkNotFoundException();
-//            }
 
             String powerProfilePath = configManager.getPowerProfileFile();
 
@@ -53,64 +37,103 @@ public class Terminal {
                 powerProfilePath = configManager.getOutputLocation() + "/power_profile.xml";
             }
 
-//            int timeCapturing = (configManager.getInteractions() * configManager.getTimeBetweenInteractions()) / 1000;
-//
-//            if (timeCapturing <= 0) {
-//                timeCapturing = 100;
-//            }
-//
-//            if (!configManager.getScriptLocationPath().isEmpty()) {
-//                timeCapturing = Integer.parseInt(configManager.getScriptTime());
-//            }
-            String build;
-            for (int run = 1; run <= 1; run++) {
-                System.out.println("Run: " + run);
-                try {
-                    if(run == 0){
-                        build = "true";
-                    }
-                    else{
-                        build = "false";
-                    }
-////                    if (trials == configManager.getTrials()) {
-////                        throw new NumberOfTrialsExceededException();
-////                    }
+            String setupScript = configManager.getSetupScript();
+            String profilingScript = configManager.getProfilingScript();
+            //File[] apps = new File(configManager.getAppDirectory()).listFiles(File::isDirectory);
+            File[] apks = new File(configManager.getApkDirectory()).listFiles(File::isDirectory);
+            String pathToApp = "";
+            String build = "false";
+            assert apks != null;
+            for (File apk_folder : apks) {
+                try{
+                    String commitHash = apk_folder.getName();
+                    System.out.println("Executing apk: " + commitHash); //will be commit hash
+                    pathToApp = apk_folder.getAbsolutePath();
 
-                    String test_app = "/Users/posl/Desktop/temp-petra-test/testing_apps/andOTP";
-                    String python_script = "/Users/posl/PycharmProjects/petra_python_part/app_setup1.py";
-                    String setupCommand = "python3 " + python_script + " --repo " + test_app + " --build " + build;
-                    System.out.println(setupCommand);
-                  /*
-                    FIRST PART OF PYTHON SCRIPT
-                    MODIFY BUILD FILE
-                    GENERATE APK
-                    INSTALL APK
-                  */
-                    process.executeCommand(setupCommand,null);
-
-                    //Find apk for the appname --> must contain specific string and ends with .apk
-                    //List<String> file = process.search(test_app,"build/outputs/apk/debug");
-                    List<String> file = process.search(test_app,"build/outputs/apk/debug");
-                    if (file.size() == 0){
-                       file = process.search(test_app,"build/outputs/apk/fdroid/debug");
+                    String debugApk,testApk;
+                    try{
+                        debugApk  = process.searchApk(pathToApp, "build/outputs/apk","debug.apk").get(0);
+                    } catch(IndexOutOfBoundsException ex){
+                        System.out.println("Couldn't find debug apk");
+                        throw new ApkNotFoundException();
                     }
-                    System.out.println("Found File: " + file.get(0));
-                    String appName = process.extractAppName(file.get(0));
+                    try{
+                        testApk = process.searchApk(pathToApp, "build/outputs/apk","androidtest.apk").get(0);
+                    } catch(IndexOutOfBoundsException ex){
+                        System.out.println("Couldn't find test apk");
+                        throw new ApkNotFoundException();
+                    }
 
-                    //Add loop to go through all apps and commits from postgres data
+                    //System.out.println("Found Apk: " + file.get(0));
+                    String appName = process.extractAppName(debugApk);
+                    process.installApp(debugApk);
+                    process.installApp(testApk);
+//                    String setupCommand = "python3 " + setupScript + " --repo " + pathToApp + " --build " + build;
+//                    System.out.println(setupCommand);
+
                     process.playRun(appName,
                             powerProfilePath, configManager.getOutputLocation(), appName,
-                            "test_commit_hash", test_app, run);
+                            commitHash, pathToApp, profilingScript);
 
-//
-                } catch (InterruptedException | IOException ex) {
+                    process.uninstallApp(appName);
+
+                } catch(InterruptedException | IOException | NullPointerException | ApkNotFoundException ex){
                     System.out.println(ex.getMessage());
                 }
-           }
-//            process.uninstallApp(appName);
-        } catch (AppNameCannotBeExtractedException | NoDeviceFoundException | IOException | ADBNotFoundException ex) {
+                break;
+            }
+        }catch (AppNameCannotBeExtractedException | NoDeviceFoundException | IOException | ADBNotFoundException ex) {
             Logger.getLogger(Terminal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
-
 }
+
+//                String refactoringCommitsFile = configManager.getRefactoringCommits() + File.separator + app.getName() + ".txt";
+//                System.out.println("Refactoring Commits: " + refactoringCommitsFile);
+//
+//                refactoringCommitsReader = new BufferedReader(new FileReader(refactoringCommitsFile));
+//                String line = refactoringCommitsReader.readLine();
+//
+//                while(line != null){
+//                    if (line.equals(introducedAndroidTest)){
+//                        startReading = true;
+//                    }
+//                    if (!startReading){
+//                        line = refactoringCommitsReader.readLine();
+//                        continue;
+//                    }
+//                    String[] refactoringCommit_parent = line.split(",");
+//
+//                    for (String commitHash : refactoringCommit_parent) { //[0] is ref commit, [1] is parent of ref commit
+//                        System.out.println("Commit: " + commitHash);
+//                        commitManager.resetCommit(app.getAbsoluteFile(),app.getName());
+//                        commitManager.checkoutToCommit(commitHash,app.getAbsoluteFile());
+//
+//                        try {
+//
+//
+//                            String setupCommand = "python3 " + setupScript + " --repo " + pathToApp + " --build " + build;
+//                            System.out.println(setupCommand);
+//                          /*
+//                            FIRST PART OF PYTHON SCRIPT
+//                            MODIFY BUILD FILE
+//                            GENERATE APK
+//                            INSTALL APK
+//                          */
+//                            process.executeCommand(setupCommand, null);
+
+//                Find apk for the appname --> must contain specific string and ends with .apk
+                    //file = process.search(pathToApp, "build/outputs/apk/fdroid/debug");
+  //                          }
+
+
+                //
+
+
+
+//                    line = refactoringCommitsReader.readLine();
+
+//                refactoringCommitsReader.close();
+
+
