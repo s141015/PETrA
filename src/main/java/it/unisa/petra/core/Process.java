@@ -175,8 +175,8 @@ public class Process {
 
     }
 
-    List<TraceLine> parseAndAggregateResults(String traceviewFilename, String batteryStatsFilename, String systraceFilename,
-                                             PowerProfile powerProfile, String filter) throws IOException {
+    public List<TraceLine> parseAndAggregateResults(String traceviewFilename, String batteryStatsFilename, String systraceFilename,
+                                                    PowerProfile powerProfile, String filter) throws IOException {
         List<TraceLine> traceLinesWConsumption = new ArrayList<>();
 
         System.out.println("Elaborating traceview info.");

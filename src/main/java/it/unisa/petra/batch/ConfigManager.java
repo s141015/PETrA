@@ -9,11 +9,11 @@ import java.util.Properties;
 /**
  * @author Dario
  */
-class ConfigManager {
+public class ConfigManager {
 
     private final String propertiesPath;
 
-    ConfigManager(String propertiesPath) {
+    public ConfigManager(String propertiesPath) {
         this.propertiesPath = propertiesPath;
     }
 
@@ -21,7 +21,7 @@ class ConfigManager {
         return new FileInputStream(propertiesPath);
     }
 
-    String getPowerProfileFile() throws IOException {
+    public String getPowerProfileFile() throws IOException {
         Properties prop = new Properties();
         try (InputStream inputStream = this.getPropertiesStream()) {
             prop.load(inputStream);
@@ -75,7 +75,7 @@ class ConfigManager {
         return prop.getProperty("apkLocation");
     }
 
-    String getOutputLocation() throws IOException {
+    public String getOutputLocation() throws IOException {
         Properties prop = new Properties();
         try (InputStream inputStream = this.getPropertiesStream()) {
             prop.load(inputStream);
@@ -102,7 +102,7 @@ class ConfigManager {
         return prop.getProperty("appProfileScript");
     }
 
-    String getApkDirectory() throws IOException {
+    public String getApkDirectory() throws IOException {
         Properties prop = new Properties();
         try (InputStream inputStream = this.getPropertiesStream()) {
             prop.load(inputStream);
