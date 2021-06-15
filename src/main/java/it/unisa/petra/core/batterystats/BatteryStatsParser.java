@@ -30,6 +30,9 @@ public class BatteryStatsParser {
                 int variationTime;
 
                 if (matcher1.find()) {
+                    if (line.contains("Total cpu time per freq:")){
+                        continue;
+                    }
                     variationTime = toMillisec(matcher1.group(1));
                     int realTime = variationTime + traceviewStart;
 
