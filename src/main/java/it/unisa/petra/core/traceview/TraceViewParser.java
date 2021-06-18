@@ -24,13 +24,14 @@ public class TraceViewParser {
         int actualRowTime = 0;
         System.out.println("FILTER: " + filter);
         Pattern traceViewPattern = Pattern.compile("(\\d*)\\s(\\w{3})\\s*(\\d+)[\\s|-](.*)");
-        Pattern processPattern = Pattern.compile("(\\d*)\\sInstr:\\s" + filter);
+        Pattern processPattern = Pattern.compile("(\\d*)\\s+main");
 
         ArrayList<TraceLine> tracelines = new ArrayList<>();
         try (BufferedReader readAll = new BufferedReader(new FileReader(file))) {
             boolean firstRow = true;
             int processId = 0;
             while ((readLine = readAll.readLine()) != null) {
+                System.out.println(readLine);
                 if (processId == 0) {
                     Matcher matcher1 = processPattern.matcher(readLine);
                     if (matcher1.find()) {
